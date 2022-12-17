@@ -45,16 +45,15 @@ class EventManager  {
 
     public:
 
-    int8_t executeEvery(unsigned long period, void (*callback)(void), int repeatCount);
+    int8_t executeEvery(unsigned long period, void (*callback)(void), int repeatCount = -1);
     int8_t executeAfter(unsigned long duration, void (*callback)(void));
 
+    int8_t oscillateEvery(uint8_t pin, unsigned long period, uint8_t startingValue, int repeatCount = -1);
 
-    int8_t oscillateEvery(uint8_t pin, unsigned long period, uint8_t startingValue, int repeatCount);
-
-    int8_t digitalReadEvery(uint8_t pin, unsigned long period, int* outputVar, int repeatCount);
+    int8_t digitalReadEvery(uint8_t pin, unsigned long period, int* outputVar, int repeatCount = -1);
     int8_t digitalReadAfter(uint8_t pin, unsigned long duration, int* outputVar);
     
-    int8_t analogReadEvery(uint8_t pin, unsigned long period, int* outputVar, int repeatCount);
+    int8_t analogReadEvery(uint8_t pin, unsigned long period, int* outputVar, int repeatCount = -1);
     int8_t analogReadAfter(uint8_t pin, unsigned long duration, int* outputVar);
 
     void stop(int8_t id);
