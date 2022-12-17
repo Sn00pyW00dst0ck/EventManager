@@ -113,6 +113,26 @@ int8_t EventManager::digitalReadAfter(uint8_t pin, unsigned long duration, int* 
 
 
 
+int8_t EventManager::analogReadEvery(uint8_t pin, unsigned long period, int* outputVar, int repeatCount = -1)  {
+	int8_t i = this->findFreeEventIndex();
+	if (i == NO_TIMER_AVAILABLE) return NO_TIMER_AVAILABLE;
+
+	// Set the event properties for digital reading
+	this->_events[i].eventType = EVENT_ANALOG_READ;
+	this->_events[i].pin = pin;
+	this->_events[i].period = period;
+	this->_events[i].repeatCount = repeatCount;
+	this->_events[i].lastEventTime = millis();
+	this->_events[i].count = 0;
+	this->_events[i].outputVar = outputVar;
+
+	return i;
+}
+
+int8_t EventManager::analogReadAfter(uint8_t pin, unsigned long duration, int* outputVar)  {
+	return this->analogReadEvery(pin, duration, outputVar, 1);
+}
+
 
 
 void EventManager::stop(int8_t id)  {

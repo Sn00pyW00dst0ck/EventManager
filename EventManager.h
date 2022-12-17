@@ -54,9 +54,8 @@ class EventManager  {
     int8_t digitalReadEvery(uint8_t pin, unsigned long period, int* outputVar, int repeatCount);
     int8_t digitalReadAfter(uint8_t pin, unsigned long duration, int* outputVar);
     
-    int8_t analogReadEvery(uint8_t pin, unsigned long period);
-    int8_t analogReadEvery(uint8_t pin, unsigned long period, int repeatCount);
-    int8_t analogReadAfter(uint8_t pin, unsigned long duration);
+    int8_t analogReadEvery(uint8_t pin, unsigned long period, int* outputVar, int repeatCount);
+    int8_t analogReadAfter(uint8_t pin, unsigned long duration, int* outputVar);
 
     void stop(int8_t id);
     void update(void);
