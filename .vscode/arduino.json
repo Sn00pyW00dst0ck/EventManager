@@ -1,4 +1,6 @@
 {
-    "board": "arduino:avr:uno",
-    "sketch": "EventManager.ino"
+    "board": "arduino:avr:mega",
+    "sketch": "EventManager.ino",
+    "port": "COM3",
+    "configuration": "cpu=atmega2560"
 }

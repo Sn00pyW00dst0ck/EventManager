@@ -9,7 +9,6 @@
 #define EVENT_OSCILLATE 2
 #define EVENT_DIGITAL_READ 3
 #define EVENT_ANALOG_READ 4
-#define MAX_NUMBER_OF_EVENTS 10
 #define TIMER_NOT_AN_EVENT -2
 #define NO_TIMER_AVAILABLE -1
 
@@ -40,10 +39,14 @@ class EventManager  {
         void update(unsigned long now);
     };
 
-    EventManager::Event _events[MAX_NUMBER_OF_EVENTS];
+    EventManager::Event* _events;
+    uint32_t maxEvents;
     int8_t findFreeEventIndex(void);
 
     public:
+
+    EventManager(uint32_t maximumEvents);
+    ~EventManager();
 
     int8_t executeEvery(unsigned long period, void (*callback)(void), int repeatCount = -1);
     int8_t executeAfter(unsigned long duration, void (*callback)(void));

@@ -52,6 +52,18 @@ void EventManager::Event::update(unsigned long now)  {
 
 
 
+EventManager::EventManager(uint32_t maximumEvents)  {
+	this->maxEvents = maximumEvents;
+	// Create the dynamic array
+	this->_events = new EventManager::Event [this->maxEvents];
+}
+
+EventManager::~EventManager()  {
+	delete[] this->_events;
+}
+
+
+
 int8_t EventManager::executeEvery(unsigned long period, void (*callback)(void), int repeatCount = -1)  {
     int8_t i = findFreeEventIndex();
 	if (i == NO_TIMER_AVAILABLE) return NO_TIMER_AVAILABLE;
@@ -137,7 +149,7 @@ int8_t EventManager::analogReadAfter(uint8_t pin, unsigned long duration, int* o
 
 void EventManager::stop(int8_t id)  {
 	// Stop the requested event from happening from now on
-    if (id >= 0 && id < MAX_NUMBER_OF_EVENTS) {
+    if (id >= 0 && id < this->maxEvents) {
 		this->_events[id].eventType = EVENT_NONE;
 	}
 }
@@ -149,7 +161,7 @@ void EventManager::update(void)  {
 
 void EventManager::update(unsigned long now)  {
 	// Update all the events with the given time in millis
-    for (int8_t i = 0; i < MAX_NUMBER_OF_EVENTS; i++)  {
+    for (int8_t i = 0; i < this->maxEvents; i++)  {
 		if (this->_events[i].eventType != EVENT_NONE)  {
 			this->_events[i].update(now);
 		}
@@ -158,7 +170,7 @@ void EventManager::update(unsigned long now)  {
 
 int8_t EventManager::findFreeEventIndex(void)  {
 	// Find an event listed as NONE and return it for use later
-	for (int8_t i = 0; i < MAX_NUMBER_OF_EVENTS; i++)  {
+	for (int8_t i = 0; i < this->maxEvents; i++)  {
 		if (this->_events[i].eventType == EVENT_NONE)  {
 			return i;
 		}

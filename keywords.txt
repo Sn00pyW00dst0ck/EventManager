@@ -1,0 +1,12 @@
+Event KEYWORD 1
+EventManager KEYWORD 1
+executeEvery KEYWORD 2
+executeAfter KEYWORD 2
+oscillateEvery KEYWORD 2
+digitalReadEvery KEYWORD 2
+digitalReadAfter KEYWORD 2
+analogReadEvery KEYWORD 2
+analogReadAfter KEYWORD 2
+stop KEYWORD 2
+update KEYWORD 2
+findFreeEventIndex KEYWORD 2
