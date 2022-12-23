@@ -1,6 +1,6 @@
 # EventManager
 
-Use this Event Manager to easily schedule concurrent events on an Arduino.
+Use this Event Manager to easily schedule concurrent events on an Arduino board.
 
 Here is a sample code:
 ```cpp
@@ -42,19 +42,23 @@ void loop()  {
 }
 ```
 
-## EventManager Class Public Methods Documentation
+## EventManager Class
 
-`executeEvery` creates a new event which will execute a given void function every X millis.
+When creating an EventManager class you specify the maximum number of events the manager will ever have. Space for those events is dynamically allocated and cleaned up when the EventManager is destroyed. 
+
+## EventManager Class Public Methods
+
+`executeEvery` creates a new event which will execute a given void function every X millis. You can specify the max number of times for the event to execute or omit the final parameter to have infinite repeats.
 
 `executeAfter` creates a new event which will execute a given void function one time after X millis have passed.
 
-`oscillateEvery` creates a new event which will swap the state of a pin from HIGH to LOW or vice versa every X millis.
+`oscillateEvery` creates a new event which will swap the state of a pin from HIGH to LOW or vice versa every X millis. You can specify the max number of times for the event to execute or omit the final parameter to have infinite repeats.
 
-`digitalReadEvery` creates a new event which will digital read a given pin every X millis and store the result in a provided variable.
+`digitalReadEvery` creates a new event which will digital read a given pin every X millis and store the result in a provided variable. You can specify the max number of times for the event to execute or omit the final parameter to have infinite repeats.
 
 `digitalReadAfter` creates a new event which will digital read a given pin after X millis and store the result in a provided variable.
 
-`analogReadEvery` creates a new event which will analog read a given pin every X millis and store the result in a provided variable.
+`analogReadEvery` creates a new event which will analog read a given pin every X millis and store the result in a provided variable. You can specify the max number of times for the event to execute or omit the final parameter to have infinite repeats.
 
 `analogReadAfter` creates a new event which will analog read a given pin after X millis and store the result in a provided variable.
 
